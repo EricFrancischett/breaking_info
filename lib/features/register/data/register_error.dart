@@ -1,0 +1,3 @@
+enum RegisterError {
+  apiError, unknown
+}

@@ -9,13 +9,6 @@ part of 'login_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LoginController on _LoginControllerBase, Store {
-  Computed<bool>? _$areCredentialsValidComputed;
-
-  @override
-  bool get areCredentialsValid => (_$areCredentialsValidComputed ??=
-          Computed<bool>(() => super.areCredentialsValid,
-              name: '_LoginControllerBase.areCredentialsValid'))
-      .value;
   Computed<bool>? _$isEmailValidComputed;
 
   @override
@@ -30,6 +23,13 @@ mixin _$LoginController on _LoginControllerBase, Store {
       (_$isPasswordValidComputed ??= Computed<bool>(() => super.isPasswordValid,
               name: '_LoginControllerBase.isPasswordValid'))
           .value;
+  Computed<bool>? _$areCredentialsValidComputed;
+
+  @override
+  bool get areCredentialsValid => (_$areCredentialsValidComputed ??=
+          Computed<bool>(() => super.areCredentialsValid,
+              name: '_LoginControllerBase.areCredentialsValid'))
+      .value;
 
   late final _$emailAtom =
       Atom(name: '_LoginControllerBase.email', context: context);
@@ -63,22 +63,6 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  late final _$userAtom =
-      Atom(name: '_LoginControllerBase.user', context: context);
-
-  @override
-  Resource<UserEntity, LoginError> get user {
-    _$userAtom.reportRead();
-    return super.user;
-  }
-
-  @override
-  set user(Resource<UserEntity, LoginError> value) {
-    _$userAtom.reportWrite(value, super.user, () {
-      super.user = value;
-    });
-  }
-
   late final _$isPasswordVisibleAtom =
       Atom(name: '_LoginControllerBase.isPasswordVisible', context: context);
 
@@ -109,6 +93,22 @@ mixin _$LoginController on _LoginControllerBase, Store {
     _$isButtonAtLoadingStatusAtom
         .reportWrite(value, super.isButtonAtLoadingStatus, () {
       super.isButtonAtLoadingStatus = value;
+    });
+  }
+
+  late final _$userAtom =
+      Atom(name: '_LoginControllerBase.user', context: context);
+
+  @override
+  Resource<UserEntity, LoginError> get user {
+    _$userAtom.reportRead();
+    return super.user;
+  }
+
+  @override
+  set user(Resource<UserEntity, LoginError> value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
     });
   }
 
@@ -172,12 +172,12 @@ mixin _$LoginController on _LoginControllerBase, Store {
     return '''
 email: ${email},
 password: ${password},
-user: ${user},
 isPasswordVisible: ${isPasswordVisible},
 isButtonAtLoadingStatus: ${isButtonAtLoadingStatus},
-areCredentialsValid: ${areCredentialsValid},
+user: ${user},
 isEmailValid: ${isEmailValid},
-isPasswordValid: ${isPasswordValid}
+isPasswordValid: ${isPasswordValid},
+areCredentialsValid: ${areCredentialsValid}
     ''';
   }
 }

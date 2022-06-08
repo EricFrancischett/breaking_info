@@ -53,7 +53,7 @@ class LoginPage extends StatelessWidget {
                         }
 
                         if (resource.status == Status.success) {
-                          // await Modular.to.pushNamed('/register/');
+                          await Modular.to.pushNamed('/register/');
                           debugPrint("DEU BOM PORRA");
                         }
                       }
