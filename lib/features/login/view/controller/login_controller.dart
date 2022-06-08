@@ -1,6 +1,6 @@
 import 'package:breaking_info/core/generics/resource.dart';
 import 'package:breaking_info/features/login/data/login_error.dart';
-import 'package:breaking_info/features/login/domain/entities/user_entity.dart';
+import 'package:breaking_info/core/entities/user_entity.dart';
 import 'package:breaking_info/features/login/domain/use_cases/login_with_credentials_use_case.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -17,14 +17,18 @@ abstract class _LoginControllerBase with Store {
   @action
   void changeEmail(String newValue) => email = newValue;
 
+  @computed
+  bool get isEmailValid =>
+      email.isNotEmpty && email.contains('@') && email.contains(".com");
+
   @observable
   String password = '';
 
   @action
   void changePassword(String newValue) => password = newValue;
 
-  @observable
-  Resource<UserEntity, LoginError> user = Resource.loading();
+  @computed
+  bool get isPasswordValid => password.length >= 6;
 
   @observable
   bool isPasswordVisible = false;
@@ -41,6 +45,9 @@ abstract class _LoginControllerBase with Store {
   @computed
   bool get areCredentialsValid => isEmailValid && isPasswordValid;
 
+  @observable
+  Resource<UserEntity, LoginError> user = Resource.loading();
+
   @action
   Future<Resource<void, LoginError>> loginUser() async {
     final resource = await _loginWithCredentials.loginUser(email, password);
@@ -50,11 +57,4 @@ abstract class _LoginControllerBase with Store {
     user = resource;
     return Resource.success();
   }
-
-  @computed
-  bool get isEmailValid =>
-      email.isNotEmpty && email.contains('@') && email.contains(".com");
-
-  @computed
-  bool get isPasswordValid => password.length > 7;
 }
