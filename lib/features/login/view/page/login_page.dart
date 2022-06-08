@@ -15,52 +15,65 @@ class LoginPage extends StatelessWidget {
         appBar: AppBar(),
         body: Column(
           children: [
-            Observer(builder: (_) {
-              return TextField(
-                decoration: InputDecoration(hintText: "Email"),
-                onChanged: _controller.changeEmail,
-              );
-            }),
-            Observer(builder: (_) {
-              return TextField(
-                obscureText: !_controller.isPasswordVisible,
-                decoration: InputDecoration(
-                  hintText: "Password",
-                  suffixIcon: IconButton(
-                    icon: _controller.isPasswordVisible
-                        ? const Icon(
-                            Icons.visibility,
-                          )
-                        : const Icon(
-                            Icons.visibility_off,
-                          ),
-                    onPressed: _controller.changePasswordVisibility,
+            Observer(
+              builder: (_) {
+                return TextField(
+                  decoration: InputDecoration(hintText: "Email"),
+                  onChanged: _controller.changeEmail,
+                );
+              },
+            ),
+            Observer(
+              builder: (_) {
+                return TextField(
+                  obscureText: !_controller.isPasswordVisible,
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                    suffixIcon: IconButton(
+                      icon: _controller.isPasswordVisible
+                          ? const Icon(
+                              Icons.visibility,
+                            )
+                          : const Icon(
+                              Icons.visibility_off,
+                            ),
+                      onPressed: _controller.changePasswordVisibility,
+                    ),
                   ),
-                ),
-                onChanged: _controller.changePassword,
-              );
-            }),
-            Observer(builder: (_) {
-              return ElevatedButton(
-                onPressed: _controller.areCredentialsValid
-                    ? () async {
-                        _controller.setButtonToLoadingStatus();
-                        final resource = await _controller.loginUser();
-                        
-                        if (resource.hasError) {
-                          //TO DO: DEAL WITH IT
-                          debugPrint("DEU RUIM PORRA");
-                        }
+                  onChanged: _controller.changePassword,
+                );
+              },
+            ),
+            TextButton(
+              onPressed: () async {
+                await Modular.to.pushNamed(
+                  '/register/',
+                );
+              },
+              child: const Text("First time here? Register"),
+            ),
+            Observer(
+              builder: (_) {
+                return ElevatedButton(
+                  onPressed: _controller.areCredentialsValid
+                      ? () async {
+                          _controller.setButtonToLoadingStatus();
+                          final resource = await _controller.loginUser();
 
-                        if (resource.status == Status.success) {
-                          await Modular.to.pushNamed('/register/');
-                          debugPrint("DEU BOM PORRA");
+                          if (resource.hasError) {
+                            //TO DO: DEAL WITH IT
+                            debugPrint("DEU RUIM PORRA");
+                          }
+
+                          if (resource.status == Status.success) {
+                            debugPrint("DEU BOM PORRA");
+                          }
                         }
-                      }
-                    : null,
-                child: const Text("Sign In"),
-              );
-            })
+                      : null,
+                  child: const Text("Sign In"),
+                );
+              },
+            )
           ],
         ),
       ),
