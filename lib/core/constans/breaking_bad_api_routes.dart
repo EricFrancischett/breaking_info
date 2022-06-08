@@ -1,5 +1,5 @@
-class BreakingBadApiRoute {
-  static const baseUrl = "https://www.breakingbadapi.com/api/";
+class BreakingBadApiRoutes {
+  static const baseUrl = "https://www.breakingbadapi.com/api";
   static const allCharactrsApiRoute = "$baseUrl/characters?category=Breaking+Bad";
   static const searchByNameApiRoute = "$baseUrl/characters?name=";
   static const allEpisodesApiRoute = "$baseUrl/episodes?series=Breaking+Bad";

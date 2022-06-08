@@ -1,0 +1,3 @@
+enum CharactersError {
+  apiError, unknown
+}
