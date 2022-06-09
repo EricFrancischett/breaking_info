@@ -22,6 +22,6 @@ class DefaultCharactersRepository implements CharactersRepository {
     // final charactersListEntity = CharactersEntity.fromMap(charactersMap!);
     final List<CharactersEntity> charactersListEntity =
         charactersListMap!.map((e) => CharactersEntity.fromMap(e)).toList();
-    return Resource.success(data: charactersListEntity);
+    return Resource.success(data: charactersListEntity); 
   }
 }
