@@ -9,7 +9,7 @@ abstract class CharactersRemoteDataSource {
       fetchCharacters();
 }
 
-class ApiHomeRemoteDataSource implements CharactersRemoteDataSource {
+class ApiCharactersDataSource implements CharactersRemoteDataSource {
   final _dio = Dio();
 
   @override
@@ -24,7 +24,6 @@ class ApiHomeRemoteDataSource implements CharactersRemoteDataSource {
       final characterList = List<Map<String, dynamic>>.from(response.data);
       return Resource.success(data: characterList);
     } on DioError catch (e) {
-      print(e);
       return Resource.failed(error: CharactersError.apiError);
     }
   }
