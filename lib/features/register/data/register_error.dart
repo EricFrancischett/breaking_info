@@ -1,3 +1,3 @@
 enum RegisterError {
-  apiError, unknown
+  apiError, unknown, failSaving
 }

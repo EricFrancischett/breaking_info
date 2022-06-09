@@ -1,3 +1,3 @@
 enum LoginError { 
-  invalidCredentials, apiError, unknown
+  failSaving, invalidCredentials, apiError, unknown
 }
