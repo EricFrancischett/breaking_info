@@ -120,6 +120,16 @@ mixin _$LoginController on _LoginControllerBase, Store {
     return _$loginUserAsyncAction.run(() => super.loginUser());
   }
 
+  late final _$localSaveCredentialsAsyncAction = AsyncAction(
+      '_LoginControllerBase.localSaveCredentials',
+      context: context);
+
+  @override
+  Future<Resource<void, LoginError>> localSaveCredentials() {
+    return _$localSaveCredentialsAsyncAction
+        .run(() => super.localSaveCredentials());
+  }
+
   late final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase', context: context);
 

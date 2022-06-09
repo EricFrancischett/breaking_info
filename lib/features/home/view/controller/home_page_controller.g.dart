@@ -19,8 +19,7 @@ mixin _$HomePageController on _HomePageControllerBase, Store {
   }
 
   @override
-  set characters(
-      Resource<List<CharactersEntity>, CharactersError> value) {
+  set characters(Resource<List<CharactersEntity>, CharactersError> value) {
     _$charactersAtom.reportWrite(value, super.characters, () {
       super.characters = value;
     });
@@ -30,8 +29,7 @@ mixin _$HomePageController on _HomePageControllerBase, Store {
       AsyncAction('_HomePageControllerBase.fetchCharacters', context: context);
 
   @override
-  Future<Resource<List<CharactersEntity>, CharactersError>>
-      fetchCharacters() {
+  Future<Resource<List<CharactersEntity>, CharactersError>> fetchCharacters() {
     return _$fetchCharactersAsyncAction.run(() => super.fetchCharacters());
   }
 
