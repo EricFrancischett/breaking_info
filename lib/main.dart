@@ -13,7 +13,7 @@ void main() async {
   await Hive.openBox<String>('credentials');
   runApp(
     ModularApp(
-      module: HomeModule(),
+      module: AppModule(),
       child: const AppWidget(),
     ),
   );

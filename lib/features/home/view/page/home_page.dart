@@ -39,24 +39,25 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Observer(
                       builder: (_) {
-                        return _controller.characters.status == Status.loading? 
-                         const Center(child:  CircularProgressIndicator()) :
-                         ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: _controller.characters.data!.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(
-                                  "${_controller.characters.data![index].name}"),
-                              leading: Container(
-                                height: 50,
-                                width: 50,
-                                child: Image.network(
-                                    '${_controller.characters.data![index].img}'),
-                              ),
-                            );
-                          },
-                        );
+                        return _controller.characters.status == Status.loading
+                            ? const Center(child: CircularProgressIndicator())
+                            : ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: _controller.characters.data!.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    title: Text(
+                                        "${_controller.characters.data![index].name}"),
+                                    leading: Container(
+                                      height: 50,
+                                      width: 50,
+                                      child: Image.network(
+                                          '${_controller.characters.data![index].img}'),
+                                    ),
+                                  );
+                                },
+                              );
                       },
                     ),
                   ],
@@ -70,19 +71,20 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Observer(
                       builder: (_) {
-                        return _controller.episodes.status == Status.loading? 
-                        const Center(child:  CircularProgressIndicator()) :
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: _controller.episodes.data!.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                                title: Text(
-                                    "${_controller.episodes.data![index].title}"),
-                                leading: Text(
-                                    'Season: ${_controller.episodes.data![index].season} Episode: ${_controller.episodes.data![index].episode}'));
-                          },
-                        );
+                        return _controller.episodes.status == Status.loading
+                            ? const Center(child: CircularProgressIndicator())
+                            : ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: _controller.episodes.data!.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                      title: Text(
+                                          "${_controller.episodes.data![index].title}"),
+                                      leading: Text(
+                                          'Season: ${_controller.episodes.data![index].season} Episode: ${_controller.episodes.data![index].episode}'));
+                                },
+                              );
                       },
                     ),
                   ],
