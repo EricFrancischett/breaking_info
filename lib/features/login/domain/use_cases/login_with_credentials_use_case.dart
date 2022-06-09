@@ -11,11 +11,10 @@ abstract class LoginWithCredentialsUseCase {
 
 class DefaultLoginWithCredentialsUseCase
     implements LoginWithCredentialsUseCase {
+      final _repository = Modular.get<LoginRepository>();
   @override
   Future<Resource<UserEntity, LoginError>> loginUser(
       String email, String password) async {
-    final _repository = Modular.get<LoginRepository>();
-
     final resource = await _repository.loginUser(email, password);
     if (resource.hasError) {
       return Resource.failed(error: LoginError.invalidCredentials);

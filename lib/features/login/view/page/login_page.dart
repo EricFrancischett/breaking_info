@@ -59,14 +59,16 @@ class LoginPage extends StatelessWidget {
                       ? () async {
                           _controller.setButtonToLoadingStatus();
                           final resource = await _controller.loginUser();
-
+                          await _controller.localSaveCredentials();
                           if (resource.hasError) {
                             //TO DO: DEAL WITH IT
                             debugPrint("DEU RUIM PORRA");
                           }
 
                           if (resource.status == Status.success) {
-                            debugPrint("DEU BOM PORRA");
+                            await Modular.to.pushNamed(
+                              '/home/',
+                            );
                           }
                         }
                       : null,

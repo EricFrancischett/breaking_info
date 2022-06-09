@@ -74,7 +74,8 @@ class RegisterPage extends StatelessWidget {
                           : const Icon(
                               Icons.visibility_off,
                             ),
-                      onPressed: _controller.changePasswordConfirmationVisibility,
+                      onPressed:
+                          _controller.changePasswordConfirmationVisibility,
                     ),
                   ),
                   onChanged: _controller.changePasswordConfirmation,
@@ -87,13 +88,15 @@ class RegisterPage extends StatelessWidget {
                     ? () async {
                         _controller.setButtonToLoadingStatus();
                         final resource = await _controller.registerUser();
+                        await _controller.localSaveCredentials();
                         if (resource.hasError) {
                           //TO DO: DEAL WITH IT
                           debugPrint("DEU RUIM PORRA");
                         }
                         if (resource.status == Status.success) {
-                          await Modular.to.pushNamed(Modular.initialRoute);
-                          debugPrint("DEU BOM PORRA");
+                          await Modular.to.pushNamed(
+                            '/home/',
+                          );
                         }
                       }
                     : null,
