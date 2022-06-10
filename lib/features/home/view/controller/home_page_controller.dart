@@ -40,7 +40,8 @@ abstract class _HomePageControllerBase with Store {
   ObservableList<EpisodesEntity> seasonTwo = <EpisodesEntity>[].asObservable();
 
   @observable
-  ObservableList<EpisodesEntity> seasonThree = <EpisodesEntity>[].asObservable();
+  ObservableList<EpisodesEntity> seasonThree =
+      <EpisodesEntity>[].asObservable();
 
   @observable
   ObservableList<EpisodesEntity> seasonFour = <EpisodesEntity>[].asObservable();
@@ -87,5 +88,25 @@ abstract class _HomePageControllerBase with Store {
     }
 
     return Resource.success();
+  }
+
+  @action
+  Future<ObservableList<EpisodesEntity>> returnSelectedSeasonEpisodes(
+      int season) async {
+    switch (season) {
+      case 1:
+        return seasonOne;
+      case 2:
+        return seasonTwo;
+      case 3:
+        return seasonThree;
+      case 4:
+        return seasonFour;
+      case 5:
+        return seasonFive;
+      default:
+        return <EpisodesEntity>[].asObservable();
+        print('somwthing went wrong');
+    }
   }
 }
