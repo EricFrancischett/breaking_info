@@ -30,14 +30,15 @@ abstract class _SplashControllerBase with Store {
     if (response.hasError) {
       setupStatus =
           Resource.failed(error: "Token is missing, please signIn again");
-      await Modular.to.pushNamed(
+      await Modular.to.pushReplacementNamed(
         '/login/',
       );
     }
-    _setTokenValue(response.data!);
+    _setTokenValue(response.data!["token"]!);
     setupStatus = Resource.success();
-    await Modular.to.pushNamed(
-      '/home/',
+    await Modular.to.pushReplacementNamed(
+      '/home/', arguments: {'first_name': response.data!['first_name'],
+      'last_name': response.data!['last_name'],}
     );
   }
 }

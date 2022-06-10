@@ -8,13 +8,13 @@ abstract class LoginLocalDataSource {
 }
 
 class HiveLoginLocalDataSource implements LoginLocalDataSource {
-  final _hive = Hive.box<String>('credentials');
+  final _hive = Hive.box<Map<dynamic, dynamic>>('credentials');
 
   @override
   Future<Resource<void, LoginError>> localSaveCredentials(
       String firstName, String lastName, String token) async {
     try {
-      await _hive.putAll(
+      await _hive.put("current_user",
         {
           'token': token,
           'first_name': firstName,

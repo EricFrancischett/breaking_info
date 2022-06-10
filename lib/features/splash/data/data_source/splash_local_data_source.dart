@@ -5,16 +5,16 @@ import 'package:breaking_info/features/splash/data/splash_error.dart';
 import 'package:hive/hive.dart';
 
 abstract class SplashLocalDataSource {
-  Future<Resource<String, SplashError>> fetchLocalCredentials();
+  Future<Resource<Map<dynamic, dynamic>, SplashError>> fetchLocalCredentials();
 }
 
 class SplashHiveLocalDataSource implements SplashLocalDataSource {
-  final _hive = Hive.box<String>('credentials');
+  final _hive = Hive.box<Map<dynamic, dynamic>>('credentials');
 
   @override
-  Future<Resource<String, SplashError>>
+  Future<Resource<Map<dynamic, dynamic>, SplashError>>
       fetchLocalCredentials() async {
-    final response = await _hive.get('token');
+    final response = await _hive.get('current_user');
     if (response == null) {
       return Resource.failed(error: SplashError.credentialsNotFound);
     }

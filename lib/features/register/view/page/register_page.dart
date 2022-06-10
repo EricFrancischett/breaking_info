@@ -1,4 +1,5 @@
 import 'package:breaking_info/core/generics/resource.dart';
+import 'package:breaking_info/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:breaking_info/features/register/view/controller/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -12,7 +13,7 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: CustomAppBar(),
         body: Column(
           children: [
             Observer(
@@ -94,15 +95,16 @@ class RegisterPage extends StatelessWidget {
                           debugPrint("DEU RUIM PORRA");
                         }
                         if (resource.status == Status.success) {
-                          await Modular.to.pushNamed(
-                            '/home/',
+                          await Modular.to.pushReplacementNamed(
+                            '/home/', arguments: {'first_name': _controller.user.data!.firstName,
+                              'last_name': _controller.user.data!.lastName,}
                           );
                         }
                       }
                     : null,
                 child: const Text("Sign In"),
               );
-            })
+            },)
           ],
         ),
       ),
