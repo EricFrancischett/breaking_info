@@ -1,0 +1,3 @@
+enum LogoutError {
+  failLogout, unknown
+}

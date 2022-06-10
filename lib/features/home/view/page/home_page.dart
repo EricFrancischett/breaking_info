@@ -36,6 +36,12 @@ class _HomePageState extends State<HomePage> {
         endDrawer: CustomDrawer(
           firstName: widget.userFirstName,
           lastName: widget.userLastName,
+          onPressed: () async {
+            await _controller.logout();
+            await Modular.to.pushReplacementNamed(
+              '/login/',
+            );
+          },
         ),
         appBar: const CustomAppBar(),
         body: PageView(

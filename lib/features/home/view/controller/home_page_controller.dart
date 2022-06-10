@@ -1,10 +1,12 @@
 import 'package:breaking_info/core/generics/resource.dart';
 import 'package:breaking_info/features/home/data/characters_error.dart';
+import 'package:breaking_info/features/home/data/logout_error.dart';
 import 'package:breaking_info/features/home/data/seasons_error.dart';
 import 'package:breaking_info/features/home/domain/entities/characters_enetity.dart';
 import 'package:breaking_info/features/home/domain/entities/episodes_entity.dart';
 import 'package:breaking_info/features/home/domain/use_cases/fetch_characters_use_case.dart';
 import 'package:breaking_info/features/home/domain/use_cases/fetch_episodes_use_case.dart';
+import 'package:breaking_info/features/home/domain/use_cases/logout_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -13,6 +15,8 @@ part 'home_page_controller.g.dart';
 class HomePageController = _HomePageControllerBase with _$HomePageController;
 
 abstract class _HomePageControllerBase with Store {
+  final _logoutUseCase = Modular.get<LogoutUseCase>();
+
   final _loadCharacterHomePageUseCase =
       Modular.get<LoadCharacterHomePageUseCase>();
 
@@ -107,6 +111,16 @@ abstract class _HomePageControllerBase with Store {
       default:
         return <EpisodesEntity>[].asObservable();
         print('somwthing went wrong');
+            }
+  }
+        
+  @action      
+  Future<Resource<void, LogoutError>> logout() async {
+    try {
+      await _logoutUseCase.logout();
+      return Resource.success();
+    } catch (e) {
+      return Resource.failed(error: LogoutError.failLogout);
     }
   }
 }

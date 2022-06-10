@@ -169,6 +169,14 @@ mixin _$HomePageController on _HomePageControllerBase, Store {
     return _$fetchAllEpisodesAsyncAction.run(() => super.fetchAllEpisodes());
   }
 
+  late final _$logoutAsyncAction =
+      AsyncAction('_HomePageControllerBase.logout', context: context);
+
+  @override
+  Future<Resource<void, LogoutError>> logout() {
+    return _$logoutAsyncAction.run(() => super.logout());
+  }
+
   @override
   String toString() {
     return '''
