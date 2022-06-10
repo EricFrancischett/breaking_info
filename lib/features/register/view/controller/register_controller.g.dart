@@ -210,6 +210,16 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     return _$registerUserAsyncAction.run(() => super.registerUser());
   }
 
+  late final _$localSaveCredentialsAsyncAction = AsyncAction(
+      '_RegisterControllerBase.localSaveCredentials',
+      context: context);
+
+  @override
+  Future<Resource<void, RegisterError>> localSaveCredentials() {
+    return _$localSaveCredentialsAsyncAction
+        .run(() => super.localSaveCredentials());
+  }
+
   late final _$_RegisterControllerBaseActionController =
       ActionController(name: '_RegisterControllerBase', context: context);
 
