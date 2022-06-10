@@ -8,13 +8,13 @@ abstract class RegisterLocalDataSource {
 }
 
 class HiveRegisterLocalDataSource implements RegisterLocalDataSource {
-  final _hive = Hive.box<String>('credentials');
+  final _hive = Hive.box<Map<dynamic, dynamic>>('credentials');
 
   @override
   Future<Resource<void, RegisterError>> localSaveCredentials(
       String firstName, String lastName, String token) async {
     try {
-      await _hive.putAll(
+      await _hive.put('current_user',
         {
           'token': token,
           'first_name': firstName,

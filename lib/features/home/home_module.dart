@@ -25,5 +25,5 @@ class HomeModule extends Module {
       ];
 
   @override
-  List<ModularRoute> get routes => [ChildRoute(Modular.initialRoute, child: ((context, args) => HomePage()))];
+  List<ModularRoute> get routes => [ChildRoute(Modular.initialRoute, child: ((context, args) => HomePage(userFirstName: args.data['first_name'], userLastName: args.data['last_name'],)))];
 }

@@ -1,4 +1,5 @@
 import 'package:breaking_info/core/generics/resource.dart';
+import 'package:breaking_info/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:breaking_info/features/login/view/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,7 +13,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: CustomAppBar(),
         body: Column(
           children: [
             Observer(
@@ -66,9 +67,10 @@ class LoginPage extends StatelessWidget {
                           }
 
                           if (resource.status == Status.success) {
-                            await Modular.to.pushNamed(
-                              '/home/',
-                            );
+                            await Modular.to.pushReplacementNamed('/home/', arguments: {
+                              'first_name': _controller.user.data!.firstName,
+                              'last_name': _controller.user.data!.lastName,
+                            });
                           }
                         }
                       : null,
