@@ -83,13 +83,13 @@ class _HomePageState extends State<HomePage> {
                             : ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: _controller.episodes.data!.length,
+                                itemCount: _controller.seasonOne.length,
                                 itemBuilder: (context, index) {
                                   return ListTile(
                                       title: Text(
-                                          "${_controller.episodes.data![index].title}"),
+                                          "${_controller.seasonOne[index].episode}"),
                                       leading: Text(
-                                          'Season: ${_controller.episodes.data![index].season} Episode: ${_controller.episodes.data![index].episode}'));
+                                          'Season: ${_controller.seasonOne[index].season} Episode: ${_controller.seasonOne[index].episode}'));
                                 },
                               );
                       },
