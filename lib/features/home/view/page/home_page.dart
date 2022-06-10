@@ -2,6 +2,8 @@ import 'package:breaking_info/core/generics/resource.dart';
 import 'package:breaking_info/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:breaking_info/core/widgets/drawer/custom_drawer.dart';
 import 'package:breaking_info/features/home/view/controller/home_page_controller.dart';
+import 'package:breaking_info/widgets/app_button_seasons.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -87,20 +89,20 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Observer(
                       builder: (_) {
-                        return _controller.episodes.status == Status.loading
-                            ? const Center(child: CircularProgressIndicator())
-                            : ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: _controller.seasonOne.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                      title: Text(
-                                          "${_controller.seasonOne[index].episode}"),
-                                      leading: Text(
-                                          'Season: ${_controller.seasonOne[index].season} Episode: ${_controller.seasonOne[index].episode}'));
-                                },
-                              );
+                        return ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            return AppButtonSeasons(
+                              buttonTitle: 'Season: ${index + 1}',
+                              buttonFunction: () {
+                                _controller
+                                    .returnSelectedSeasonEpisodes(index + 1);
+                              },
+                            );
+                          },
+                        );
                       },
                     ),
                   ],
