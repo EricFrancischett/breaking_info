@@ -9,13 +9,18 @@ class SeasonsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 7, 7),
+      backgroundColor: Color.fromARGB(255, 255, 210, 7),
+
       body: SafeArea(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             ListView.builder(
+              itemCount: currentSeasonEpisodes.length,
+              shrinkWrap: true,
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {},
                     title: Text("${currentSeasonEpisodes[index].title}"),
                     leading: Text(
                         'Episode: ${currentSeasonEpisodes[index].episode}'));
