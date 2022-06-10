@@ -11,11 +11,12 @@ class EpisodePage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text('${episodeInfo.airDate}'),
           Text('${episodeInfo.episode}'),
           Text('${episodeInfo.title}'),
-          ListView.builder(itemBuilder: (context, index) {
+          ListView.builder(shrinkWrap: true, itemCount: episodeInfo.characters!.length, itemBuilder: (context, index) {
             return Text('${episodeInfo.characters![index]}');
           })
         ],
