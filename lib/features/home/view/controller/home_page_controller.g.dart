@@ -177,6 +177,20 @@ mixin _$HomePageController on _HomePageControllerBase, Store {
     return _$logoutAsyncAction.run(() => super.logout());
   }
 
+  late final _$_HomePageControllerBaseActionController =
+      ActionController(name: '_HomePageControllerBase', context: context);
+
+  @override
+  List<EpisodesEntity> returnSelectedSeasonEpisodes(int season) {
+    final _$actionInfo = _$_HomePageControllerBaseActionController.startAction(
+        name: '_HomePageControllerBase.returnSelectedSeasonEpisodes');
+    try {
+      return super.returnSelectedSeasonEpisodes(season);
+    } finally {
+      _$_HomePageControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

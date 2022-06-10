@@ -95,19 +95,19 @@ abstract class _HomePageControllerBase with Store {
   }
 
   @action
-  Future<ObservableList<EpisodesEntity>> returnSelectedSeasonEpisodes(
-      int season) async {
+  List<EpisodesEntity> returnSelectedSeasonEpisodes(
+      int season) {
     switch (season) {
       case 1:
-        return seasonOne;
+        return seasonOne.toList();
       case 2:
-        return seasonTwo;
+        return seasonTwo.toList();
       case 3:
-        return seasonThree;
+        return seasonThree.toList();
       case 4:
-        return seasonFour;
+        return seasonFour.toList();
       case 5:
-        return seasonFive;
+        return seasonFive.toList();
       default:
         return <EpisodesEntity>[].asObservable();
         print('somwthing went wrong');
