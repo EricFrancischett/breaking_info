@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class CustomDrawer extends StatelessWidget {
   final String firstName;
   final String lastName;
+  final Function() onPressed;
   const CustomDrawer(
-      {Key? key, required this.firstName, required this.lastName})
+      {Key? key, required this.firstName, required this.lastName, required this.onPressed})
       : super(key: key);
 
   @override
@@ -27,7 +28,7 @@ class CustomDrawer extends StatelessWidget {
                 Text(lastName),
               ],
             ),
-            TextButton(onPressed: (){}, child: Text("Logout"))
+            TextButton(onPressed: onPressed, child: Text("Logout"))
           ],
         ),
       ),

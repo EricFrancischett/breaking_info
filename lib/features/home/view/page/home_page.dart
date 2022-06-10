@@ -9,7 +9,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 class HomePage extends StatefulWidget {
   final String userFirstName;
   final String userLastName;
-  const HomePage({Key? key, required this.userFirstName, required this.userLastName}) : super(key: key);
+  const HomePage(
+      {Key? key, required this.userFirstName, required this.userLastName})
+      : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -29,7 +31,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        endDrawer: CustomDrawer(firstName: widget.userFirstName, lastName: widget.userLastName,),
+        endDrawer: CustomDrawer(
+          firstName: widget.userFirstName,
+          lastName: widget.userLastName,
+          onPressed: () async {
+            await _controller.logout();
+            await Modular.to.pushReplacementNamed(
+              '/login/',
+            );
+          },
+        ),
         appBar: const CustomAppBar(),
         body: PageView(
           controller: _controller.pageController,
