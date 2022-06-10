@@ -25,7 +25,7 @@ abstract class _SplashControllerBase with Store {
   Future<void> checkIfTokenExistsAndIsValid() async {
     final response = await _repository.userCredentials();
     await Future.delayed(
-      Duration(seconds: 2),
+      const Duration(seconds: 2),
     );
     if (response.hasError) {
       setupStatus =

@@ -1,5 +1,4 @@
 import 'package:breaking_info/core/generics/resource.dart';
-import 'package:breaking_info/features/home/data/data_source/seasons_remote_dara_source.dart';
 import 'package:breaking_info/features/home/data/repositories/episodes_repository.dart';
 import 'package:breaking_info/features/home/data/seasons_error.dart';
 import 'package:breaking_info/features/home/domain/entities/episodes_entity.dart';
