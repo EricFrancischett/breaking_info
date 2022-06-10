@@ -1,5 +1,6 @@
 import 'package:breaking_info/features/home/domain/entities/episodes_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class SeasonsPage extends StatelessWidget {
   final List<EpisodesEntity> currentSeasonEpisodes;
@@ -10,7 +11,6 @@ class SeasonsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 210, 7),
-
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -20,7 +20,9 @@ class SeasonsPage extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return ListTile(
-                  onTap: () {},
+                    onTap: () {
+                      Modular.to.pushReplacementNamed('/episodes/', arguments: currentSeasonEpisodes[index]);
+                    },
                     title: Text("${currentSeasonEpisodes[index].title}"),
                     leading: Text(
                         'Episode: ${currentSeasonEpisodes[index].episode}'));
