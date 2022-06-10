@@ -73,6 +73,86 @@ mixin _$HomePageController on _HomePageControllerBase, Store {
     });
   }
 
+  late final _$seasonOneAtom =
+      Atom(name: '_HomePageControllerBase.seasonOne', context: context);
+
+  @override
+  ObservableList<EpisodesEntity> get seasonOne {
+    _$seasonOneAtom.reportRead();
+    return super.seasonOne;
+  }
+
+  @override
+  set seasonOne(ObservableList<EpisodesEntity> value) {
+    _$seasonOneAtom.reportWrite(value, super.seasonOne, () {
+      super.seasonOne = value;
+    });
+  }
+
+  late final _$seasonTwoAtom =
+      Atom(name: '_HomePageControllerBase.seasonTwo', context: context);
+
+  @override
+  ObservableList<EpisodesEntity> get seasonTwo {
+    _$seasonTwoAtom.reportRead();
+    return super.seasonTwo;
+  }
+
+  @override
+  set seasonTwo(ObservableList<EpisodesEntity> value) {
+    _$seasonTwoAtom.reportWrite(value, super.seasonTwo, () {
+      super.seasonTwo = value;
+    });
+  }
+
+  late final _$seasonThreeAtom =
+      Atom(name: '_HomePageControllerBase.seasonThree', context: context);
+
+  @override
+  ObservableList<EpisodesEntity> get seasonThree {
+    _$seasonThreeAtom.reportRead();
+    return super.seasonThree;
+  }
+
+  @override
+  set seasonThree(ObservableList<EpisodesEntity> value) {
+    _$seasonThreeAtom.reportWrite(value, super.seasonThree, () {
+      super.seasonThree = value;
+    });
+  }
+
+  late final _$seasonFourAtom =
+      Atom(name: '_HomePageControllerBase.seasonFour', context: context);
+
+  @override
+  ObservableList<EpisodesEntity> get seasonFour {
+    _$seasonFourAtom.reportRead();
+    return super.seasonFour;
+  }
+
+  @override
+  set seasonFour(ObservableList<EpisodesEntity> value) {
+    _$seasonFourAtom.reportWrite(value, super.seasonFour, () {
+      super.seasonFour = value;
+    });
+  }
+
+  late final _$seasonFiveAtom =
+      Atom(name: '_HomePageControllerBase.seasonFive', context: context);
+
+  @override
+  ObservableList<EpisodesEntity> get seasonFive {
+    _$seasonFiveAtom.reportRead();
+    return super.seasonFive;
+  }
+
+  @override
+  set seasonFive(ObservableList<EpisodesEntity> value) {
+    _$seasonFiveAtom.reportWrite(value, super.seasonFive, () {
+      super.seasonFive = value;
+    });
+  }
+
   late final _$fetchCharactersAsyncAction =
       AsyncAction('_HomePageControllerBase.fetchCharacters', context: context);
 
@@ -95,7 +175,12 @@ mixin _$HomePageController on _HomePageControllerBase, Store {
 bottomSelectedIndex: ${bottomSelectedIndex},
 pageController: ${pageController},
 characters: ${characters},
-episodes: ${episodes}
+episodes: ${episodes},
+seasonOne: ${seasonOne},
+seasonTwo: ${seasonTwo},
+seasonThree: ${seasonThree},
+seasonFour: ${seasonFour},
+seasonFive: ${seasonFive}
     ''';
   }
 }

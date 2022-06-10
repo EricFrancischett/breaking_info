@@ -34,6 +34,21 @@ abstract class _HomePageControllerBase with Store {
   @observable
   Resource<List<EpisodesEntity>, EpisodesError> episodes = Resource.loading();
 
+  @observable
+  ObservableList<EpisodesEntity> seasonOne = <EpisodesEntity>[].asObservable();
+
+  @observable
+  ObservableList<EpisodesEntity> seasonTwo = <EpisodesEntity>[].asObservable();
+
+  @observable
+  ObservableList<EpisodesEntity> seasonThree = <EpisodesEntity>[].asObservable();
+
+  @observable
+  ObservableList<EpisodesEntity> seasonFour = <EpisodesEntity>[].asObservable();
+
+  @observable
+  ObservableList<EpisodesEntity> seasonFive = <EpisodesEntity>[].asObservable();
+
   @action
   Future<Resource<List<CharactersEntity>, CharactersError>>
       fetchCharacters() async {
@@ -53,6 +68,25 @@ abstract class _HomePageControllerBase with Store {
       return Resource.failed(error: EpisodesError.unknown);
     }
     episodes = resource;
+
+    for (var x = 0; x < episodes.data!.length; x++) {
+      if (episodes.data![x].season == "1") {
+        seasonOne.add(episodes.data![x]);
+      }
+      if (episodes.data![x].season == "2") {
+        seasonTwo.add(episodes.data![x]);
+      }
+      if (episodes.data![x].season == "3") {
+        seasonThree.add(episodes.data![x]);
+      }
+      if (episodes.data![x].season == "4") {
+        seasonFour.add(episodes.data![x]);
+      }
+      if (episodes.data![x].season == "5") {
+        seasonFive.add(episodes.data![x]);
+      }
+    }
+
     return Resource.success();
   }
 }
