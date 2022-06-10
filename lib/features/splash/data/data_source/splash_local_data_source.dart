@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:breaking_info/core/generics/resource.dart';
 import 'package:breaking_info/features/splash/data/splash_error.dart';
 import 'package:hive/hive.dart';

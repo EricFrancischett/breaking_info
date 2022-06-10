@@ -1,6 +1,5 @@
 import 'package:breaking_info/core/generics/resource.dart';
 import 'package:breaking_info/features/home/data/characters_error.dart';
-import 'package:breaking_info/features/home/data/data_source/characters_remote_data_source.dart';
 import 'package:breaking_info/features/home/data/seasons_error.dart';
 import 'package:breaking_info/features/home/domain/entities/characters_enetity.dart';
 import 'package:breaking_info/features/home/domain/entities/episodes_entity.dart';

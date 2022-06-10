@@ -2,7 +2,6 @@ import 'package:breaking_info/core/constans/breaking_bad_api_routes.dart';
 import 'package:breaking_info/core/generics/resource.dart';
 import 'package:breaking_info/features/home/data/characters_error.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 abstract class CharactersRemoteDataSource {
   Future<Resource<List<Map<String, dynamic>>, CharactersError>>
