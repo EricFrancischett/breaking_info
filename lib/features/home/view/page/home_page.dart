@@ -73,6 +73,11 @@ class _HomePageState extends State<HomePage> {
                                       child: Image.network(
                                           '${_controller.characters.data![index].img}'),
                                     ),
+                                    onTap: () async {
+                                      await Modular.to.pushNamed(
+                                          '/characters/',
+                                          arguments: _controller.characters.data![index]);
+                                    },
                                   );
                                 },
                               );

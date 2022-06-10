@@ -111,10 +111,10 @@ abstract class _HomePageControllerBase with Store {
       default:
         return <EpisodesEntity>[].asObservable();
         print('somwthing went wrong');
-            }
+    }
   }
-        
-  @action      
+
+  @action
   Future<Resource<void, LogoutError>> logout() async {
     try {
       await _logoutUseCase.logout();
