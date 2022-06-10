@@ -1,5 +1,6 @@
 import 'package:breaking_info/core/adapters/remote_client/remote_client.dart';
 import 'package:breaking_info/features/characters/characters_module.dart';
+import 'package:breaking_info/features/episode/episodes_module.dart';
 import 'package:breaking_info/features/home/home_module.dart';
 import 'package:breaking_info/features/login/login_module.dart';
 import 'package:breaking_info/features/register/register_module.dart';
@@ -40,6 +41,10 @@ class AppModule extends Module {
         ModuleRoute(
           '/characters/',
           module: CharactersModule(),
+        ),
+        ModuleRoute(
+          '/episodes/',
+          module: EpisodesModule(),
         ),
       ];
 }
