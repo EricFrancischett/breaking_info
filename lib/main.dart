@@ -10,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDirectory = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
-  await Hive.openBox<String>('credentials');
+  await Hive.openBox<Map<dynamic, dynamic>>('credentials');
   runApp(
     ModularApp(
       module: AppModule(),
