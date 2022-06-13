@@ -13,6 +13,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: IconThemeData(
+        size: 36,
+        color: ColorsApp.defaultBlack,
+      ),
       backgroundColor: ColorsApp.defaultYellow,
       elevation: 0,
       leading: Modular.to.canPop()
@@ -20,8 +24,8 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
               onPressed: () {
                 Modular.to.pop();
               },
-              icon: Icon(
-                Icons.arrow_back_ios_rounded, color: ColorsApp.defaultBlack, size: 36,
+              icon: const Icon(
+                Icons.arrow_back_ios_rounded,
               ),
             )
           : null,
@@ -30,11 +34,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       title: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
-          height: 90,
+            height: 90,
             child: Hero(
               tag: "logo",
               child: Image.asset(
-                  'lib/Assets/10302--Ns-R98aXvUcxE5evzUBz-pUdmp0eS7q-cropped-1x1-browser 1 (1).png'),
+                  'images/logo.png'),
             )),
       ),
     );
