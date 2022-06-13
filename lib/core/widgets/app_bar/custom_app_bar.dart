@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:breaking_info/core/theme/colors/colors_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -19,8 +20,8 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
               onPressed: () {
                 Modular.to.pop();
               },
-              icon: const Icon(
-                Icons.arrow_back_ios_rounded,
+              icon: Icon(
+                Icons.arrow_back_ios_rounded, color: ColorsApp.defaultBlack, size: 36,
               ),
             )
           : null,
@@ -30,8 +31,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
           height: 90,
-            child: Image.asset(
-                'lib/Assets/10302--Ns-R98aXvUcxE5evzUBz-pUdmp0eS7q-cropped-1x1-browser 1 (1).png')),
+            child: Hero(
+              tag: "logo",
+              child: Image.asset(
+                  'lib/Assets/10302--Ns-R98aXvUcxE5evzUBz-pUdmp0eS7q-cropped-1x1-browser 1 (1).png'),
+            )),
       ),
     );
   }
