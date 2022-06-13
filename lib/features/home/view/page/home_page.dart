@@ -82,35 +82,41 @@ class _HomePageState extends State<HomePage> {
                                 itemBuilder: (context, index) {
                                   return Padding(
                                     padding: const EdgeInsets.all(4.0),
-                                    child: ListTile(
-                                      tileColor: ColorsApp.defaultBlack,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0)),
-                                      title: Center(
-                                        child: Text(
-                                          "${_controller.characters.data![index].name}",
-                                          style: GoogleFonts.cabin(color: Colors.white, fontSize: 18),
-                                        ),
-                                      ),
-                                      trailing: const Icon(null),
-                                      leading: Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Container(
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(50),
-                                            child: Image.network(
-                                                '${_controller.characters.data![index].img}', fit: BoxFit.cover,),
+                                    child: Material(
+                                      color: ColorsApp.defaultBlack,
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      elevation: 10,
+                                      child: ListTile(
+                                        title: Center(
+                                          child: Text(
+                                            "${_controller.characters.data![index].name}",
+                                            style: GoogleFonts.cabin(
+                                                color: Colors.white,
+                                                fontSize: 18),
                                           ),
-                                              
                                         ),
+                                        trailing: const Icon(null),
+                                        leading: Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: SizedBox(
+                                            width: 30,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              child: Image.network(
+                                                '${_controller.characters.data![index].img}',
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        onTap: () async {
+                                          await Modular.to.pushNamed(
+                                              '/characters/',
+                                              arguments: _controller
+                                                  .characters.data![index]);
+                                        },
                                       ),
-                                      onTap: () async {
-                                        await Modular.to.pushNamed(
-                                            '/characters/',
-                                            arguments: _controller
-                                                .characters.data![index]);
-                                      },
                                     ),
                                   );
                                 },
@@ -154,25 +160,42 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: ColorsApp.defaultBlack,
-          currentIndex: _controller.bottomSelectedIndex,
-          onTap: (index) {
-            _controller.bottomSelectedIndex = index;
-            _controller.pageController.animateToPage(index,
-                duration: const Duration(milliseconds: 700),
-                curve: Curves.easeIn);
-          },
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(null, size: 0), label: 'Characters'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  null,
-                  size: 0,
-                ),
-                label: 'Seasons')
-          ]),
+      bottomNavigationBar: Observer(builder: (_) {
+        return Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+            boxShadow: [
+              BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
+            ),
+            child: BottomNavigationBar(
+                selectedItemColor: ColorsApp.defaultYellow,
+                backgroundColor: ColorsApp.defaultBlack,
+                currentIndex: _controller.bottomSelectedIndex,
+                onTap: (index) {
+                  _controller.bottomSelectedIndex = index;
+                  _controller.pageController.animateToPage(index,
+                      duration: const Duration(milliseconds: 700),
+                      curve: Curves.easeIn);
+                },
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.person), label: 'Characters'),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.list,
+                      ),
+                      label: 'Seasons')
+                ]),
+          ),
+        );
+      }),
     );
   }
 }
