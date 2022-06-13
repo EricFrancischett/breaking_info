@@ -12,7 +12,7 @@ class EpisodePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       backgroundColor: ColorsApp.defaultYellow,
       body: SizedBox(
         height: MediaQuery.of(context).size.height * 0.90,
