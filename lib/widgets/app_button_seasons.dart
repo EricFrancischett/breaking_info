@@ -1,5 +1,7 @@
 import 'package:breaking_info/core/generics/resource.dart';
+import 'package:breaking_info/core/theme/colors/colors_app.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppButtonSeasons extends StatelessWidget {
   final String buttonTitle;
@@ -10,17 +12,20 @@ class AppButtonSeasons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return InkWell( 
       onTap: buttonFunction,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          color: Colors.amber,
-          width: 300,
-          height: 50,
-          child: Center(
-            child: Text(
-              buttonTitle,
+        child: Material(
+          color: ColorsApp.defaultBlack,
+          borderRadius: BorderRadius.circular(20.0),
+          elevation: 10,
+          child: ListTile(
+            title: Center(
+              child: Text(
+                "${buttonTitle}",
+                style: GoogleFonts.cabin(color: Colors.white, fontSize: 18),
+              ),
             ),
           ),
         ),
