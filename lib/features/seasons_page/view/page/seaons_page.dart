@@ -26,6 +26,8 @@ class SeasonsPage extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return AppButtonSeasons(
+                    tileColor: ColorsApp.defaultBlack,
+                    letterColor: ColorsApp.defaultWhite,
                     buttonTitle:
                         "Episode ${currentSeasonEpisodes[index].episode}:  ${currentSeasonEpisodes[index].title}",
                     buttonFunction: () async {

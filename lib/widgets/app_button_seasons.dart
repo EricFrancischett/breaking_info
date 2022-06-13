@@ -5,26 +5,33 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppButtonSeasons extends StatelessWidget {
   final String buttonTitle;
-  Function() buttonFunction;
+  Function()? buttonFunction;
+  Color tileColor;
+  Color letterColor;
+
   AppButtonSeasons(
-      {Key? key, required this.buttonTitle, required this.buttonFunction})
+      {Key? key,
+      required this.buttonTitle,
+      this.buttonFunction,
+      required this.tileColor,
+      required this.letterColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell( 
+    return InkWell(
       onTap: buttonFunction,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Material(
-          color: ColorsApp.defaultBlack,
+          color: tileColor,
           borderRadius: BorderRadius.circular(20.0),
           elevation: 10,
           child: ListTile(
             title: Center(
               child: Text(
                 "${buttonTitle}",
-                style: GoogleFonts.cabin(color: Colors.white, fontSize: 18),
+                style: GoogleFonts.cabin(color: letterColor, fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ),
