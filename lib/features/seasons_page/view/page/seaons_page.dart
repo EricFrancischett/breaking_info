@@ -20,12 +20,14 @@ class SeasonsPage extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return ListTile(
-                    onTap: () {
-                      Modular.to.pushReplacementNamed('/episodes/', arguments: currentSeasonEpisodes[index]);
-                    },
-                    title: Text("${currentSeasonEpisodes[index].title}"),
-                    leading: Text(
-                        'Episode: ${currentSeasonEpisodes[index].episode}'));
+                  onTap: () {
+                    Modular.to.pushNamed('/episodes/',
+                        arguments: currentSeasonEpisodes[index]);
+                  },
+                  title: Text("${currentSeasonEpisodes[index].title}"),
+                  leading:
+                      Text('Episode: ${currentSeasonEpisodes[index].episode}'),
+                );
               },
             )
           ],
