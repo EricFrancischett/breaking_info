@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                           itemCount: 5,
                           itemBuilder: (context, index) {
                             return AppButtonSeasons(
-                              buttonTitle: 'Season: ${index + 1}',
+                              buttonTitle: 'Season ${index + 1}',
                               buttonFunction: () async {
                                 await Modular.to.pushNamed(
                                   '/season/',
