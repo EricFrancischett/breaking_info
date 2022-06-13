@@ -25,10 +25,13 @@ class LoginPage extends StatelessWidget {
               flex: 7,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  "assets/logo.png",
-                  width: 200,
-                  height: 200,
+                child: Hero(
+                  tag: "logo",
+                  child: Image.asset(
+                    "assets/logo.png",
+                    width: 200,
+                    height: 200,
+                  ),
                 ),
               ),
             ),
@@ -38,8 +41,9 @@ class LoginPage extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     color: ColorsApp.defaultBlack,
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(40.0)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(40.0),
+                    ),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(24.0),
@@ -112,35 +116,38 @@ class LoginPage extends StatelessWidget {
                         Observer(
                           builder: (_) {
                             return CustomButton(
-                                onPressed: _controller.areCredentialsValid
-                                    ? () async {
-                                        _controller.setButtonToLoadingStatus();
-                                        final resource =
-                                            await _controller.loginUser();
-                                        await _controller.localSaveCredentials();
-                                        if (resource.hasError) {
-                                          //TO DO: DEAL WITH IT
-                                          debugPrint("DEU RUIM PORRA");
-                                        }
-            
-                                        if (resource.status == Status.success) {
-                                          await Modular.to.pushReplacementNamed(
-                                              '/home/',
-                                              arguments: {
-                                                'first_name': _controller
-                                                    .user.data!.firstName,
-                                                'last_name': _controller
-                                                    .user.data!.lastName,
-                                              });
-                                        }
+                              onPressed: _controller.areCredentialsValid
+                                  ? () async {
+                                      _controller.setButtonToLoadingStatus();
+                                      final resource =
+                                          await _controller.loginUser();
+                                      await _controller.localSaveCredentials();
+                                      if (resource.hasError) {
+                                        //TO DO: DEAL WITH IT
+                                        debugPrint("DEU RUIM PORRA");
                                       }
-                                    : null,
-                                child: Text(
-                                  "Login",
-                                  style: FontsApp.mainFontText36.copyWith(
-                                    color: _controller.areCredentialsValid? ColorsApp.defaultBlack : ColorsApp.defaultWhite,
-                                  ),
-                                ));
+
+                                      if (resource.status == Status.success) {
+                                        await Modular.to.pushReplacementNamed(
+                                            '/home/',
+                                            arguments: {
+                                              'first_name': _controller
+                                                  .user.data!.firstName,
+                                              'last_name': _controller
+                                                  .user.data!.lastName,
+                                            });
+                                      }
+                                    }
+                                  : null,
+                              child: Text(
+                                "Sign In",
+                                style: FontsApp.mainFontText36.copyWith(
+                                  color: _controller.areCredentialsValid
+                                      ? ColorsApp.defaultBlack
+                                      : ColorsApp.defaultWhite,
+                                ),
+                              ),
+                            );
                           },
                         )
                       ],
