@@ -1,3 +1,4 @@
+import 'package:breaking_info/core/theme/colors/colors_app.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -11,7 +12,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorsApp.defaultBlack,
       child: Container(
         decoration: const BoxDecoration(color: Colors.white),
         child: Column(
