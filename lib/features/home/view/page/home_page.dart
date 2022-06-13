@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                             return AppButtonSeasons(
                               buttonTitle: 'Season: ${index + 1}',
                               buttonFunction: () async {
-                                await Modular.to.pushReplacementNamed(
+                                await Modular.to.pushNamed(
                                   '/season/',
                                   arguments: _controller
                                       .returnSelectedSeasonEpisodes(index + 1),

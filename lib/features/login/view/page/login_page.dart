@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
                 child: Hero(
                   tag: "logo",
                   child: Image.asset(
-                    "assets/logo.png",
+                    "images/logo.png",
                     width: 200,
                     height: 200,
                   ),
