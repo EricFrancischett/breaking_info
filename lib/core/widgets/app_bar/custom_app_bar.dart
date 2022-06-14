@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           child: SizedBox(
             height: 90,
               child: Hero(
-              tag: "logo",
+              tag: "heisenberg_face",
               child: Image.asset(
                   'images/logo.png'),
             )),
