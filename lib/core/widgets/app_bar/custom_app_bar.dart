@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:breaking_info/core/theme/colors/colors_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -26,7 +24,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 onPressed: () {
                   Modular.to.pop();
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios_rounded,
                 ),
               )

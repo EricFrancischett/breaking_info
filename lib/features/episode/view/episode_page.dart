@@ -14,96 +14,80 @@ class EpisodePage extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(),
       backgroundColor: ColorsApp.defaultYellow,
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.90,
-        child: Column(
-          children: [
-            const Expanded(
-              flex: 1,
-              child: SizedBox(),
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            color: ColorsApp.defaultBlack,
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(40.0),
             ),
-            Expanded(
-              flex: 13,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: ColorsApp.defaultBlack,
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(40.0),
-                  ),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Episode ${episodeInfo.episode}",
-                        style: GoogleFonts.cabin(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                            color: ColorsApp.defaultWhite),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "${episodeInfo.title}",
-                        style: GoogleFonts.cabin(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                            color: ColorsApp.defaultWhite),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(
-                          "Air Date: ${episodeInfo.airDate}",
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.cabin(
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
-                            color: ColorsApp.defaultWhite,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(
-                          "List of Characters:",
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.cabin(
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
-                            color: ColorsApp.defaultWhite,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.43,
-                      child: SingleChildScrollView(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: episodeInfo.characters!.length,
-                            itemBuilder: (context, index) {
-                              return AppButtonSeasons(
-                                buttonTitle: '${episodeInfo.characters![index]}',
-                                tileColor: ColorsApp.defaultYellow,
-                                letterColor: ColorsApp.defaultBlack,
-                              );
-                            }),
-                      ),
-                    )
-                  ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Episode ${episodeInfo.episode}",
+                  style: GoogleFonts.cabin(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: ColorsApp.defaultWhite),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "${episodeInfo.title}",
+                  style: GoogleFonts.cabin(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: ColorsApp.defaultWhite),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    "Air Date: ${episodeInfo.airDate}",
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.cabin(
+                      fontSize: 18,
+                      fontWeight: FontWeight.normal,
+                      color: ColorsApp.defaultWhite,
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    "List of Characters:",
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.cabin(
+                      fontSize: 18,
+                      fontWeight: FontWeight.normal,
+                      color: ColorsApp.defaultWhite,
+                    ),
+                  ),
+                ),
+              ),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: episodeInfo.characters!.length,
+                  itemBuilder: (context, index) {
+                    return AppButtonSeasons(
+                      buttonTitle: '${episodeInfo.characters![index]}',
+                      tileColor: ColorsApp.defaultYellow,
+                      letterColor: ColorsApp.defaultBlack,
+                    );
+                  })
+            ],
+          ),
         ),
       ),
     );
