@@ -19,18 +19,18 @@ class SplashPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                "images/breaking_info.png",
+                width: 300,
+                height: 300,
+              ),
               Hero(
-                tag: "logo",
+                tag: "heisenberg_face",
                 child: Image.asset(
                   "images/logo.png",
                   width: 300,
                   height: 300,
                 ),
-              ),
-              Image.asset(
-                "images/breaking_info.png",
-                width: 300,
-                height: 300,
               ),
             ],
           ),

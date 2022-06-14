@@ -86,6 +86,9 @@ abstract class _RegisterControllerBase with Store {
   @action
   void setButtonToLoadingStatus() => isButtonAtLoadingStatus = true;
 
+  @action
+  void setButtonToNotLoadingStatus() => isButtonAtLoadingStatus = false;
+
   @observable
   Resource<UserEntity, RegisterError> user = Resource.loading();
 

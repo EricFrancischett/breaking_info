@@ -8,6 +8,9 @@ import 'package:breaking_info/features/register/view/controller/register_control
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:lottie/lottie.dart';
+
+import '../../../../core/widgets/dialog/custom_dialog.dart';
 
 class RegisterPage extends StatelessWidget {
   final _controller = Modular.get<RegisterController>();
@@ -21,7 +24,7 @@ class RegisterPage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height*0.84,
+            height: MediaQuery.of(context).size.height * 0.84,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -157,8 +160,22 @@ class RegisterPage extends StatelessWidget {
                                         await _controller
                                             .localSaveCredentials();
                                         if (resource.hasError) {
-                                          //TO DO: DEAL WITH IT
-                                          debugPrint("DEU RUIM PORRA");
+                                          await showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return CustomDialog(
+                                                errorMessage:
+                                                    "Please, try again",
+                                                onPressed: () {
+                                                  Modular.to.pop();
+                                                  _controller
+                                                      .setButtonToNotLoadingStatus;
+                                                },
+                                              );
+                                            },
+                                          );
+                                          _controller
+                                              .setButtonToNotLoadingStatus;
                                         }
                                         if (resource.status == Status.success) {
                                           await Modular.to.pushReplacementNamed(
@@ -172,14 +189,23 @@ class RegisterPage extends StatelessWidget {
                                         }
                                       }
                                     : null,
-                                child: Text(
-                                  "Sign Up",
-                                  style: FontsApp.mainFontText36.copyWith(
-                                    color: _controller.allCredentialIsValid
-                                        ? ColorsApp.defaultBlack
-                                        : ColorsApp.defaultWhite,
-                                  ),
-                                ),
+                                child: _controller.isButtonAtLoadingStatus
+                                    ? Lottie.asset(
+                                        'images/loading_circle_black.json',
+                                        height: 64,
+                                        width: 128,
+                                        alignment: Alignment.center,
+                                        fit: BoxFit.fill,
+                                      )
+                                    : Text(
+                                        "Sign Up",
+                                        style: FontsApp.mainFontText36.copyWith(
+                                          color:
+                                              _controller.allCredentialIsValid
+                                                  ? ColorsApp.defaultBlack
+                                                  : ColorsApp.defaultWhite,
+                                        ),
+                                      ),
                               );
                             },
                           )

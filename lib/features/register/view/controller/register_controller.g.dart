@@ -312,6 +312,17 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   @override
+  void setButtonToNotLoadingStatus() {
+    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
+        name: '_RegisterControllerBase.setButtonToNotLoadingStatus');
+    try {
+      return super.setButtonToNotLoadingStatus();
+    } finally {
+      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 firstName: ${firstName},

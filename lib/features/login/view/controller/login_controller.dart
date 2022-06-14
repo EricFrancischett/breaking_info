@@ -42,6 +42,9 @@ abstract class _LoginControllerBase with Store {
   void setButtonToLoadingStatus() => isButtonAtLoadingStatus = true;
 
   @action
+  void setButtonToNotLoadingStatus() => isButtonAtLoadingStatus = false;
+
+  @action
   void changePasswordVisibility() => isPasswordVisible = !isPasswordVisible;
 
   @computed
@@ -63,7 +66,8 @@ abstract class _LoginControllerBase with Store {
   @action
   Future<Resource<void, LoginError>> localSaveCredentials() async {
     try {
-      _localSaveCredentials.localSaveCredentials(user.data!.firstName!, user.data!.lastName!, user.data!.token!);
+      _localSaveCredentials.localSaveCredentials(
+          user.data!.firstName!, user.data!.lastName!, user.data!.token!);
       return Resource.success();
     } catch (e) {
       return Resource.failed(error: LoginError.failSaving);

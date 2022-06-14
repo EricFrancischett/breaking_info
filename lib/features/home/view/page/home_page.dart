@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
   final String userFirstName;
@@ -74,7 +75,13 @@ class _HomePageState extends State<HomePage> {
                     Observer(
                       builder: (_) {
                         return _controller.characters.status == Status.loading
-                            ? const Center(child: CircularProgressIndicator())
+                            ? Lottie.asset(
+                                      'images/loading_circle_black.json',
+                                      height: 128,
+                                      width: 256,
+                                      alignment: Alignment.center,
+                                      fit: BoxFit.fill,
+                                    )
                             : ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,

@@ -3,11 +3,13 @@ import 'package:breaking_info/core/theme/colors/colors_app.dart';
 import 'package:breaking_info/core/theme/fonts/fonts_app.dart';
 import 'package:breaking_info/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:breaking_info/core/widgets/button/custom_button.dart';
+import 'package:breaking_info/core/widgets/dialog/custom_dialog.dart';
 import 'package:breaking_info/core/widgets/textfield/custom_textfield.dart';
 import 'package:breaking_info/features/login/view/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatelessWidget {
   final _controller = Modular.get<LoginController>();
@@ -26,7 +28,7 @@ class LoginPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Hero(
-                  tag: "logo",
+                  tag: "heisenberg_face",
                   child: Image.asset(
                     "images/logo.png",
                     width: 200,
@@ -123,30 +125,51 @@ class LoginPage extends StatelessWidget {
                                           await _controller.loginUser();
                                       await _controller.localSaveCredentials();
                                       if (resource.hasError) {
-                                        //TO DO: DEAL WITH IT
-                                        debugPrint("DEU RUIM PORRA");
+                                        await showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return CustomDialog(
+                                              errorMessage:
+                                                  "Invalid Credentials",
+                                              onPressed: () {
+                                                Modular.to.pop();
+                                                _controller
+                                                    .setButtonToNotLoadingStatus();
+                                              },
+                                            );
+                                          },
+                                        );
+                                        _controller.setButtonToNotLoadingStatus();
                                       }
-
                                       if (resource.status == Status.success) {
                                         await Modular.to.pushReplacementNamed(
-                                            '/home/',
-                                            arguments: {
-                                              'first_name': _controller
-                                                  .user.data!.firstName,
-                                              'last_name': _controller
-                                                  .user.data!.lastName,
-                                            });
+                                          '/home/',
+                                          arguments: {
+                                            'first_name': _controller
+                                                .user.data!.firstName,
+                                            'last_name':
+                                                _controller.user.data!.lastName,
+                                          },
+                                        );
                                       }
                                     }
                                   : null,
-                              child: Text(
-                                "Sign In",
-                                style: FontsApp.mainFontText36.copyWith(
-                                  color: _controller.areCredentialsValid
-                                      ? ColorsApp.defaultBlack
-                                      : ColorsApp.defaultWhite,
-                                ),
-                              ),
+                              child: _controller.isButtonAtLoadingStatus
+                                  ? Lottie.asset(
+                                      'images/loading_circle_black.json',
+                                      height: 64,
+                                      width: 128,
+                                      alignment: Alignment.center,
+                                      fit: BoxFit.fill,
+                                    )
+                                  : Text(
+                                      "Sign In",
+                                      style: FontsApp.mainFontText36.copyWith(
+                                        color: _controller.areCredentialsValid
+                                            ? ColorsApp.defaultBlack
+                                            : ColorsApp.defaultWhite,
+                                      ),
+                                    ),
                             );
                           },
                         )

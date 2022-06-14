@@ -76,6 +76,7 @@ flutter:
   assets:
     - images/logo.png
     - images/breaking_info.png
+    - images/loading_circle_black.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
